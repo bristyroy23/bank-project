@@ -25,3 +25,25 @@ depositBtn.addEventListener('click', function() {
     })
 
 })
+withdrawBtn.addEventListener('click', function(){
+    let withdrawAmout = parseFloat(withdrawInput.value);
+    if(newBalance < withdrawAmout){
+      alert(`Your balance is too low.
+  You cannot withdray more amount than your Main balance`)
+    }else{
+      newBalance -= withdrawAmout
+      document.getElementById('balance-total').innerText = newBalance
+      let previousWithdrawAmount =  parseFloat(document.getElementById('withdraw-total').innerText);
+      let currentWithdrawAmount = previousWithdrawAmount + withdrawAmout
+      document.getElementById('withdraw-total').innerText = currentWithdrawAmount
+      let date = new Date();
+      allWithdraw.push(withdrawAmout)
+      const p = document.createElement('p')
+      allWithdraw.forEach(function(singleWithdraw, index){
+        p.innerText = `${index + 1}---  ${singleWithdraw} Tk ${date.toDateString()} time:  ${date.toLocaleTimeString()}`
+        document.getElementById('withdrawHistory').appendChild(p)
+      })
+    document.getElementById('withdrawHistory').innerHTML=`Withdraw ammount: ${withdrawAmout} Tk ${d}`;
+      
+    }
+  })
